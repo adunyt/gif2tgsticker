@@ -45,17 +45,22 @@
                     self.ids._right_container.width = checkboxes.width  
                IconLeftWidget:
                     id: icon-widget
-                    icon: "content-cut"
+                    icon: "resize"
                RightWidgetBoxLayout:
+                    width: "125dp"
                     id: checkboxes
                     orientation: "vertical"
                     MDBoxLayout:
+                         MDIcon:
+                              icon: "relative-scale" 
                          MDLabel:
                               text: "Scale"
                          MDCheckbox:
                               group: 'group'
                               active: True
                     MDBoxLayout:
+                         MDIcon:
+                              icon: "content-cut" 
                          MDLabel:
                               text: "Pad"
                          MDCheckbox:
