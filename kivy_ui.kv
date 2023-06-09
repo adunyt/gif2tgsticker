@@ -65,8 +65,8 @@
                text: "Smart speed ajust duration limit (SSADL)"
                secondary_text: "when video is longer than 3 seconds"
                on_size:
-                    self.ids._right_container.x = textfield.width / 2
-                    self.ids._right_container.width = textfield.width / 2
+                    self.ids._right_container.x = textfield.width
+                    self.ids._right_container.width = textfield.width
                IconLeftWidget:
                     id: icon-widget
                     icon: "play-speed"
@@ -80,8 +80,8 @@
                secondary_text: "used when unable to get duration from video"
                tertiary_text: "(0.5 = 2x speed)"
                on_size:
-                    self.ids._right_container.x = textfield.width / 2
-                    self.ids._right_container.width = textfield.width / 2
+                    self.ids._right_container.x = textfield.width
+                    self.ids._right_container.width = textfield.width
                IconLeftWidget:
                     id: icon-widget
                     icon: "play-speed"
@@ -111,8 +111,8 @@
                secondary_text: "lower means faster playback"
                tertiary_text: "-1=unset"
                on_size:
-                    self.ids._right_container.x = textfield.width / 2
-                    self.ids._right_container.width = textfield.width / 2
+                    self.ids._right_container.x = textfield.width
+                    self.ids._right_container.width = textfield.width
                IconLeftWidget:
                     id: icon-widget
                     icon: "clock-start"
@@ -127,19 +127,49 @@
           MDProgressBar:
                value: 0
 
-
 <RightWidgetSlider>:
      hint_bg_color: "#7F7F7F"
      hint_text_color: "F2F2F2"
 
+<FileItem>:
+     padding: "10dp"
+     orientation: "vertical"
+     filename: "null"
+     MDIcon:
+          valign: "center"
+          icon: "file"
+          font_size: '45dp' 
+          pos_hint: {"center_x": .5, "center_y": .5}
+     MDLabel:
+          halign: "center"
+          font_style: "Caption" 
+          text: root.filename
+
 <FilesPanel>:
      rows: 2
-     MDLabel:
-          text: "Input Files"
-     MDGridLayout:
-          cols: 4
-          border: 
-     MDLabel:
-          text: "Output Files"
-     MDGridLayout:
-          cols: 4
+     MDBoxLayout:
+          padding: "20dp"
+          orientation: "vertical"
+          MDLabel:
+               size_hint_y: 0.05
+               text: "Input Files"
+               font_style: "Button"
+               color: "#A5A5A5"
+          MDGridLayout:
+               rows: 4
+               line_width: "1.5dp"
+               line_color: "#A5A5A5"
+               md_bg_color: "#CCCCCC"
+     MDBoxLayout:
+          padding: "20dp"
+          orientation: "vertical"
+          MDLabel:
+               size_hint_y: 0.05
+               text: "Output files"
+               font_style: "Button"
+               color: "#A5A5A5"
+          MDGridLayout:
+               rows: 4
+               line_width: "1.5dp"
+               line_color: "#A5A5A5"
+               md_bg_color: "#CCCCCC"

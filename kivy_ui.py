@@ -34,6 +34,9 @@ class RightWidgetTextField(IRightBodyTouch, MDTextField):
 class RightWidgetSlider(IRightBodyTouch, MDSlider):
     pass
 
+class FileItem(MDBoxLayout):
+    pass
+
 class StickerFactory(MDApp):
     KV_FILES = ["kivy_ui.kv"]
     DEBUG=1
