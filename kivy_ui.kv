@@ -1,12 +1,15 @@
 #:kivy 2.2.0
 <StickerFactoryApp>:
      MDGridLayout:
+          id: maingrid
           md_bg_color: "#F2F2F2"
           size: root.width, root.height
           cols: 2
           VideoSettingsMenu:
+               id: "video_settings_menu"
                size_hint_x: 0.5
           FilesPanel:
+               id: files_grid
                size_hint_x: 0.5
                
 <VideoSettingsMenu>:
@@ -20,8 +23,10 @@
                halign: "center"
                font_style: "H2"
      MDList:
+          id: list
           size_hint_y: 0.7
           TwoLineAvatarIconListItem:
+               id: fps_list_item
                text: "FPS"
                secondary_text: "Lower FPS = Smaller size"
                on_size:
@@ -38,6 +43,7 @@
                     show_off: False
 
           TwoLineAvatarIconListItem:
+               id: resize_list_item
                text: "Resize mode"
                secondary_text: "How video will be cropped"
                on_size:
@@ -67,7 +73,8 @@
                               group: 'group'
 
           TwoLineAvatarIconListItem:
-               text: "Smart speed ajust duration limit (SSADL)"
+               id: smart_adjust_list_item
+               text: "Smart speed adjust duration limit (SSADL)"
                secondary_text: "when video is longer than 3 seconds"
                on_size:
                     self.ids._right_container.x = textfield.width
@@ -79,8 +86,10 @@
                     id: textfield
                     text: "2.9" 
                     halign: "center"
+                    input_filter: 'float'
 
           ThreeLineAvatarIconListItem:
+               id: smart_adjust_fallback_list_item
                text: "SSADL fallback (PTS modifier)"
                secondary_text: "used when unable to get duration from video"
                tertiary_text: "(0.5 = 2x speed)"
@@ -94,8 +103,10 @@
                     id: textfield
                     text: "1.0"
                     halign: "center"
+                    input_filter: 'float'
 
           ThreeLineAvatarIconListItem:
+               id: crf_list_item
                text: "CRF Value"
                secondary_text: "higher means lower quality"
                tertiary_text: "-1=unset"
@@ -112,6 +123,7 @@
                     value: -1
 
           ThreeLineAvatarIconListItem:
+               id: webp_delay_list_item
                text: "WebP to APNG delay"
                secondary_text: "lower means faster playback"
                tertiary_text: "-1=unset"
@@ -125,6 +137,7 @@
                     id: textfield
                     text: "-1"
                     halign: "center"
+                    input_filter: 'int'
      
      MDBoxLayout:
           size_hint_y: 0.05
@@ -134,7 +147,11 @@
 
 <RightWidgetSlider>:
      hint_bg_color: "#7F7F7F"
-     hint_text_color: "F2F2F2"
+     hint_text_color: "#F2F2F2"
+
+<RightWidgetTextField>:
+     text_color_normal: "#595959"
+     text_color_focus: "black"
 
 <FileItem>:
      padding: "10dp"
@@ -144,9 +161,10 @@
           valign: "center"
           icon: "file"
           font_size: '45dp' 
-          pos_hint: {"center_x": .5, "center_y": .5}
+          pos_hint: {"center_x": .5, "center_y": 0.5}
      MDLabel:
           halign: "center"
+          valign: "top"
           font_style: "Caption" 
           text: root.filename
 
@@ -161,6 +179,7 @@
                font_style: "Button"
                color: "#A5A5A5"
           MDGridLayout:
+               id: input_files_grid
                rows: 4
                line_width: "1.5dp"
                line_color: "#A5A5A5"
@@ -174,6 +193,7 @@
                font_style: "Button"
                color: "#A5A5A5"
           MDGridLayout:
+               id: output_files_grid
                rows: 4
                line_width: "1.5dp"
                line_color: "#A5A5A5"
