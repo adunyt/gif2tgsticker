@@ -1,0 +1,145 @@
+#:kivy 2.2.0
+<StickerFactoryApp>:
+     MDGridLayout:
+          md_bg_color: "#F2F2F2"
+          size: root.width, root.height
+          cols: 2
+          VideoSettingsMenu:
+               size_hint_x: 0.5
+          FilesPanel:
+               size_hint_x: 0.5
+               
+<VideoSettingsMenu>:
+     cols: 1
+     md_bg_color: "#CCCCCC"
+     MDBoxLayout:
+          size_hint_y: 0.1
+          MDLabel:
+               text: "Video settings"
+               valign: "center"    
+               halign: "center"
+               font_style: "H2"
+     MDList:
+          size_hint_y: 0.7
+          TwoLineAvatarIconListItem:
+               text: "FPS"
+               secondary_text: "Lower FPS = Smaller size"
+               on_size:
+                    self.ids._right_container.width = slider.width
+                    self.ids._right_container.x = slider.width
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "video-vintage"
+               RightWidgetSlider:
+                    id: slider
+                    min: 1
+                    max: 30
+                    value: 30
+                    show_off: False
+
+          TwoLineAvatarIconListItem:
+               text: "Resize mode"
+               secondary_text: "How video will be cropped"
+               on_size:
+                    self.ids._right_container.x = checkboxes.width        
+                    self.ids._right_container.width = checkboxes.width  
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "content-cut"
+               RightWidgetBoxLayout:
+                    id: checkboxes
+                    orientation: "vertical"
+                    MDBoxLayout:
+                         MDLabel:
+                              text: "Scale"
+                         MDCheckbox:
+                              group: 'group'
+                              active: True
+                    MDBoxLayout:
+                         MDLabel:
+                              text: "Pad"
+                         MDCheckbox:
+                              group: 'group'
+
+          TwoLineAvatarIconListItem:
+               text: "Smart speed ajust duration limit (SSADL)"
+               secondary_text: "when video is longer than 3 seconds"
+               on_size:
+                    self.ids._right_container.x = textfield.width / 2
+                    self.ids._right_container.width = textfield.width / 2
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "play-speed"
+               RightWidgetTextField:
+                    id: textfield
+                    text: "2.9" 
+                    halign: "center"
+
+          ThreeLineAvatarIconListItem:
+               text: "SSADL fallback (PTS modifier)"
+               secondary_text: "used when unable to get duration from video"
+               tertiary_text: "(0.5 = 2x speed)"
+               on_size:
+                    self.ids._right_container.x = textfield.width / 2
+                    self.ids._right_container.width = textfield.width / 2
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "play-speed"
+               RightWidgetTextField:
+                    id: textfield
+                    text: "1.0"
+                    halign: "center"
+
+          ThreeLineAvatarIconListItem:
+               text: "CRF Value"
+               secondary_text: "higher means lower quality"
+               tertiary_text: "-1=unset"
+               on_size:
+                    self.ids._right_container.width = slider.width
+                    self.ids._right_container.x = slider.width
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "quality-high"
+               RightWidgetSlider:
+                    id: slider
+                    min: -1
+                    max: 51
+                    value: -1
+
+          ThreeLineAvatarIconListItem:
+               text: "WebP to APNG delay"
+               secondary_text: "lower means faster playback"
+               tertiary_text: "-1=unset"
+               on_size:
+                    self.ids._right_container.x = textfield.width / 2
+                    self.ids._right_container.width = textfield.width / 2
+               IconLeftWidget:
+                    id: icon-widget
+                    icon: "clock-start"
+               RightWidgetTextField:
+                    id: textfield
+                    text: "-1"
+                    halign: "center"
+     
+     MDBoxLayout:
+          size_hint_y: 0.05
+          padding: "20dp"
+          MDProgressBar:
+               value: 0
+
+
+<RightWidgetSlider>:
+     hint_bg_color: "#7F7F7F"
+     hint_text_color: "F2F2F2"
+
+<FilesPanel>:
+     rows: 2
+     MDLabel:
+          text: "Input Files"
+     MDGridLayout:
+          cols: 4
+          border: 
+     MDLabel:
+          text: "Output Files"
+     MDGridLayout:
+          cols: 4
