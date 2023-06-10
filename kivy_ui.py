@@ -26,7 +26,7 @@ class FileStatus:
 class StickerFactoryApp(MDWidget):
     pass
 
-class VideoSettingsMenu(MDGridLayout):
+class VideoSettingsMenu(MDBoxLayout):
     pass
 
 class FilesPanel(MDGridLayout):
@@ -62,6 +62,8 @@ class StickerFactory(MDApp):
     
     def build_app(self):
         Window.bind(on_drop_file=self.on_file_drop)
+        Window.minimum_width = "800dp"
+        Window.minimum_height = "650dp"
         self.theme_cls.material_style = "M3"
         self.theme_cls.primary_palette = "Gray"
         self.theme_cls.accent_palette = "BlueGray"

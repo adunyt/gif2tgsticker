@@ -7,24 +7,23 @@
           cols: 2
           VideoSettingsMenu:
                id: "video_settings_menu"
-               size_hint_x: 0.5
+               adaptive_width: True
+               width: "520dp"
           FilesPanel:
                id: files_grid
-               size_hint_x: 0.5
-               
+
 <VideoSettingsMenu>:
-     cols: 1
+     orientation: "vertical"
      md_bg_color: "#CCCCCC"
-     MDBoxLayout:
-          size_hint_y: 0.1
-          MDLabel:
-               text: "Video settings"
-               valign: "center"    
-               halign: "center"
-               font_style: "H2"
+     MDLabel:
+          adaptive_height: True
+          padding: "20dp"
+          text: "Video settings"
+          valign: "center"    
+          halign: "center"
+          font_style: "H3"
      MDList:
           id: list
-          size_hint_y: 0.7
           TwoLineAvatarIconListItem:
                id: fps_list_item
                text: "FPS"
@@ -41,6 +40,7 @@
                     max: 30
                     value: 30
                     show_off: False
+                    on_touch_up: app.convertData.fps = int(self.value)
 
           TwoLineAvatarIconListItem:
                id: resize_list_item
@@ -64,6 +64,7 @@
                          MDCheckbox:
                               group: 'group'
                               active: True
+                              on_active: if args[1] is True: app.convertData.resize_mode = "scale"
                     MDBoxLayout:
                          MDIcon:
                               icon: "content-cut" 
@@ -71,6 +72,7 @@
                               text: "Pad"
                          MDCheckbox:
                               group: 'group'
+                              on_active: if args[1] is True: app.convertData.resize_mode = "pad"
 
           TwoLineAvatarIconListItem:
                id: smart_adjust_list_item
@@ -87,6 +89,7 @@
                     text: "2.9" 
                     halign: "center"
                     input_filter: 'float'
+                    on_focus: if args[1] is False: app.convertData.smart_adjust = self.text
 
           ThreeLineAvatarIconListItem:
                id: smart_adjust_fallback_list_item
@@ -104,6 +107,7 @@
                     text: "1.0"
                     halign: "center"
                     input_filter: 'float'
+                    on_focus: if args[1] is False: app.convertData.smart_adjust_fallback = self.text
 
           ThreeLineAvatarIconListItem:
                id: crf_list_item
@@ -121,6 +125,7 @@
                     min: -1
                     max: 51
                     value: -1
+                    on_touch_up: app.convertData.crf_value = int(self.value)
 
           ThreeLineAvatarIconListItem:
                id: webp_delay_list_item
@@ -138,11 +143,11 @@
                     text: "-1"
                     halign: "center"
                     input_filter: 'int'
-     
+                    on_focus: if args[1] is False: app.convertData.web2apng_delay = self.text
      MDBoxLayout:
-          size_hint_y: 0.05
-          padding: "20dp"
           MDProgressBar:
+               size_hint: 1, None
+               height: "15dp" 
                value: 0
 
 <RightWidgetSlider>:
