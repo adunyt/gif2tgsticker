@@ -83,6 +83,6 @@ def process_file(filepath, fps_amount: str, resize_mode: str, smart_limit_durati
         .overwrite_output()
     )
 
-    job.run_async()
+    job.run()
 
     return out_path
