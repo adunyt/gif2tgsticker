@@ -155,16 +155,13 @@
 
 <FileItem>:
      padding: "10dp"
-     orientation: "vertical"
      filename: "null"
+     spacing: "10dp"
      MDIcon:
           valign: "center"
           icon: "file"
-          font_size: '45dp' 
           pos_hint: {"center_x": .5, "center_y": 0.5}
      MDLabel:
-          halign: "center"
-          valign: "top"
           font_style: "Caption" 
           text: root.filename
 
@@ -180,7 +177,7 @@
                color: "#A5A5A5"
           MDGridLayout:
                id: input_files_grid
-               rows: 4
+               cols: 1
                line_width: "1.5dp"
                line_color: "#A5A5A5"
                md_bg_color: "#CCCCCC"
@@ -194,7 +191,7 @@
                color: "#A5A5A5"
           MDGridLayout:
                id: output_files_grid
-               rows: 4
+               cols: 1
                line_width: "1.5dp"
                line_color: "#A5A5A5"
                md_bg_color: "#CCCCCC"
